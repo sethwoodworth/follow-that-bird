@@ -17,7 +17,7 @@ var FollowThatBird = {
       type: "POST",
       success: function () {
         if (tweetDiv.siblings().length == 0) {
-          $('#show_more_tweets').show();  
+          $('#show_more_tweets').show();
         }
         tweetDiv.remove();
       },

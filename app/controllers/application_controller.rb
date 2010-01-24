@@ -28,9 +28,9 @@ class ApplicationController < ActionController::Base
   def admin?
     session[:admin_password] == AppConfig.admin_password
   end
-  
+
   protected
-  
+
   def tweet_ids_voted_on
     session[:tweet_ids_voted_on] ||= []
   end

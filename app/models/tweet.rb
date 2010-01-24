@@ -1,6 +1,6 @@
 class Tweet < ActiveRecord::Base
   validates_uniqueness_of :tweet_id
-  
+
   # This is the method that the core view will use to 
   # show tweets that still need triaging.
   #
@@ -13,17 +13,17 @@ class Tweet < ActiveRecord::Base
          random.
          limit(15)
   end
-  
+
   named_scope :recent, lambda { |*since|
     since = since.any? ? since.first : 2.days.ago
     { :conditions => ["#{self.table_name}.created_at > ?", since]}
   }
   
-  named_scope :upvoted_less_than, lambda { |count| 
+  named_scope :upvoted_less_than, lambda { |count|
     { :conditions => ["#{self.table_name}.upvote_count < ?", count]}
   }
   
-  named_scope :downvoted_less_than, lambda { |count| 
+  named_scope :downvoted_less_than, lambda { |count|
     { :conditions => ["#{self.table_name}.downvote_count < ?", count] }
   }
   
@@ -43,8 +43,8 @@ class Tweet < ActiveRecord::Base
       else
         latitude, longitude = nil, nil
       end
-      if Tweet.create(:tweet_id => tweet.id, 
-                      :text => tweet.text, 
+      if Tweet.create(:tweet_id => tweet.id,
+                      :text => tweet.text,
                       :from_user => tweet.from_user, 
                       :time_of_tweet => tweet.created_at, 
                       :to_user => tweet.to_user,

@@ -8,7 +8,7 @@ class TweetVotesController < ApplicationController
     when "down"
       @tweet.add_downvote
     end
-    
+
     @tweet.save
     self.tweet_ids_voted_on << @tweet.id
     head :ok
